@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GettingStarted.Server", "GettingStarted\Server\GettingStarted.Server.csproj", "{36C2A7E7-6473-4CCE-A434-F840AA5D950A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GettingStarted.Server", "GettingStarted\Server\GettingStarted.Server.csproj", "{36C2A7E7-6473-4CCE-A434-F840AA5D950A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GettingStarted.Client", "GettingStarted\Client\GettingStarted.Client.csproj", "{E4D9E353-4C29-401B-9B58-D348879BCA42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GettingStarted.Client", "GettingStarted\Client\GettingStarted.Client.csproj", "{E4D9E353-4C29-401B-9B58-D348879BCA42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GettingStarted.Shared", "GettingStarted\Shared\GettingStarted.Shared.csproj", "{8206D204-03F6-41B7-A805-B45146BE023B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GettingStarted.Shared", "GettingStarted\Shared\GettingStarted.Shared.csproj", "{8206D204-03F6-41B7-A805-B45146BE023B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
