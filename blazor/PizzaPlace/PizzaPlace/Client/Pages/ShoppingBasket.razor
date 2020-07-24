@@ -1,22 +1,24 @@
 ﻿@using PizzaPlace.Shared
 
-@if (Basket.Orders.Any())
-{
-    <h1>@Title</h1>
+    <div style="background-color: gray">
+        @if (Basket.Orders.Any())
+        {
+            <h1>@Title</h1>
 
-    @foreach ((Pizza pizza, int pos) in Pizzas)
-    {
-        <PizzaItem Pizza="@pizza" ButtonTitle="Remove"
-                   ButtonClass="btn btn-danger"
-                   Selected="@(async(_) => await Selected.InvokeAsync(pos))" />
-    }
+            @foreach ((Pizza pizza, int pos) in Pizzas)
+            {
+                <PizzaItem Pizza="@pizza" ButtonTitle="Remove"
+                           ButtonClass="btn btn-danger"
+                           Selected="@(async(_) => await Selected.InvokeAsync(pos))" />
+            }
 
-    <div class="row">
-        <div class="col"> Total:</div>
-        <div class="col"> @TotalPrice </div>
-        <div class="col"> </div>
+            <div class="row">
+                <div class="col"> Total:</div>
+                <div class="col"> @TotalPrice </div>
+                <div class="col"> </div>
+            </div>
+        }
     </div>
-}
 
 @code {
 

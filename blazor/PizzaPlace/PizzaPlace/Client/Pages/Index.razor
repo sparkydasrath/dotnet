@@ -1,18 +1,20 @@
 ﻿@page "/"
 @using PizzaPlace.Shared
+@inject IMenuService MenuService
+@inject IOrderService OrderService
 
-<PizzaList Title="Our selection of pizzas" 
+<PizzaList Title="Our selection of pizzas"
            Menu="@State.Menu"
-           Selected="@(async (pizza) => AddToBasket(pizza))"/>
+           Selected="@(async (pizza) => AddToBasket(pizza))" />
 
 @if (State.Basket.Orders.Any())
 {
-    <hr/>
+    <hr />
 }
 <ShoppingBasket Title="Your current order"
                 Basket="@State.Basket"
                 GetPizzaFromId="@State.Menu.GetPizza"
-                Selected="@((pos) => RemoveFromBasket(pos))"/>
+                Selected="@((pos) => RemoveFromBasket(pos))" />
 
 <hr />
 
@@ -20,25 +22,16 @@
                ButtonTitle="Checkout"
                ButtonClass="btn btn-primary"
                Customer="@State.Basket.Customer"
-               Submit="@PlaceOrder"/>
-
+               Submit="@PlaceOrder" />
 
 @code
 {
-    public State State { get; } = new State()
-    {
-        Menu = new Menu
-        {
-            Pizzas = new List<Pizza>
-{
-                new Pizza(1, "Pepperoni", 8.99M, Spiciness.Spicy ),
-                new Pizza(2, "Margarita", 7.99M, Spiciness.None ),
-                new Pizza(3, "Diabolo", 9.99M, Spiciness.Hot )
-            }
-        }
-    };
+    public State State { get; } = new State();
 
-    private string SpicinessImage(Spiciness spiciness) => $"images/{spiciness.ToString().ToLower()}.png";
+    protected override async Task OnInitializedAsync()
+    {
+        State.Menu = await MenuService.GetMenu();
+    }
 
     private void AddToBasket(Pizza pizza)
     {
@@ -52,8 +45,8 @@
         State.Basket.Orders.RemoveAt(pos);
     }
 
-    private void PlaceOrder()
+    private async Task PlaceOrder()
     {
-        Console.WriteLine("Placing order");
+        await OrderService.PlaceOrder(State.Basket);
     }
 }
