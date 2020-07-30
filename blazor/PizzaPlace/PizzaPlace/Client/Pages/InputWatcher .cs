@@ -10,21 +10,18 @@ namespace PizzaPlace.Client.Pages
         [CascadingParameter]
         public EditContext EditContext
         {
-            get => this.editContext;
+            get => editContext;
             set
             {
-                this.editContext = value;
-                EditContext.OnFieldChanged += async (sender, e) =>
-                {
+                editContext = value;
+                EditContext.OnFieldChanged += async (sender, e) => 
                     await FieldChanged.InvokeAsync(e.FieldIdentifier.FieldName);
-                };
             }
         }
 
         [Parameter]
         public EventCallback<string> FieldChanged { get; set; }
 
-        public bool Validate()
-            => EditContext?.Validate() ?? false;
+        public bool Validate() => EditContext?.Validate() ?? false;
     }
 }
