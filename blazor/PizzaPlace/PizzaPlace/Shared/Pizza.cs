@@ -9,7 +9,7 @@ namespace PizzaPlace.Shared
         public decimal Price { get; set; }
         public Spiciness Spiciness { get; set; }
 
-        public Pizza() { }
+        public Pizza() { /* empty constructor for entity framework  */}
         public Pizza(int id, string name, decimal price, Spiciness spiciness)
         {
             Id = id;
