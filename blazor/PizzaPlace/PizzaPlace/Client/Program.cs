@@ -4,6 +4,7 @@ using PizzaPlace.Shared;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using PizzaPlace.Client.Services;
 
 namespace PizzaPlace.Client
 {
@@ -15,7 +16,7 @@ namespace PizzaPlace.Client
             builder.RootComponents.Add<App>("app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            builder.Services.AddTransient<IMenuService, HardCodedMenuService>();
+            builder.Services.AddTransient<IMenuService, MenuService>();
             builder.Services.AddTransient<IOrderService, ConsoleOrderService>();
             await builder.Build().RunAsync();
         }
