@@ -8,7 +8,7 @@
 <PizzaList Title="Our selection of pizzas"
            Menu="@State.Menu"
            Selected="@(async (pizza) => AddToBasket(pizza))"
-           ShowPizzaInformation="ShowPizzaInformation"/>
+           ShowPizzaInformation="@ShowPizzaInformation"/>
 
 @if (State.Basket.Orders.Any())
 {
@@ -37,7 +37,7 @@
     {
         State.Menu = await MenuService.GetMenu();
     }
-
+    %
     private void AddToBasket(Pizza pizza)
     {
         Console.WriteLine($"Added pizza {pizza.Name}");
