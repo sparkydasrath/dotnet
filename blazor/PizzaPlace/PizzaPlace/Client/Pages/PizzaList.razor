@@ -21,7 +21,11 @@ else
 {
     @foreach (Pizza pizza in Menu.Pizzas)
     {
-        <PizzaItem Pizza="@pizza" ButtonClass="btn btn-success" ButtonTitle="Order" Selected="@Selected" />
+        <PizzaItem Pizza="@pizza"
+                   ButtonClass="btn btn-success"
+                   ButtonTitle="Order"
+                   Selected="@Selected"
+                   ShowPizzaInformation="@ShowPizzaInformation" />
     }
 }
 
@@ -32,6 +36,12 @@ else
 
     [Parameter]
     public Menu Menu { get; set; }
+
+    /*
+     * You added a ShowPizzaInformation callback to the PizzaList component, and you simply pass it to the PizzaItem component. The Index component will set this callback, and the PizzaList will pass it to the PizzaItem component.
+     */
+    [Parameter]
+    public Action<Pizza> ShowPizzaInformation { get; set; }
 
     [Parameter]
     public EventCallback<Pizza> Selected { get; set; }

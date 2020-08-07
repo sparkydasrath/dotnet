@@ -2,7 +2,14 @@
 
 <div class="row">
     <div class="col">
-        @Pizza.Name
+        @if (ShowPizzaInformation != null)
+        {
+            <a href="" @onclick="(() => ShowPizzaInformation?.Invoke(Pizza))">@Pizza.Name</a>
+        }
+        else
+        {
+            @Pizza.Name
+        }
     </div>
     <div class="col">
         @Pizza.Price
@@ -23,11 +30,12 @@
 
     [Parameter]
     public string ButtonTitle { get; set; }
-    
+
     [Parameter]
     public string ButtonClass { get; set; }
 
-
+    [Parameter]
+    public Action<Pizza> ShowPizzaInformation { get; set; }
 
     [Parameter]
     public EventCallback<Pizza> Selected { get; set; }
