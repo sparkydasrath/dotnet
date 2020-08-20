@@ -1,16 +1,81 @@
 ﻿@page "/counter"
+@page "/counter/{CurrentCount:int}"
+@inject NavigationManager UriHelper
+@inject IJSRuntime JsRuntime
 
 <h1>Counter</h1>
 
-<p>Current count: @currentCount</p>
+<p>Current count: <span>@CurrentCount</span></p>
+
+<p>
+    Current count:
+    <span>@CurrentCount</span>
+    <input @ref="inputElement" @bind="CurrentCount" />
+</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<a class="btn btn-primary" href="/">Home</a>
+
+<button class="btn btn-primary" @onclick="StartFrom50">Start From  50</button>
+
 @code {
+
     private int currentCount = 0;
+    private ElementReference inputElement;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            DotNetObjectReference<Counter> objRef = DotNetObjectReference.Create(this);
+            await JsRuntime.InvokeVoidAsync("blazorLocalStorage.watch", objRef);
+            int? c = await JsRuntime.InvokeAsync<int?>("blazorLocalStorage.get", nameof(CurrentCount));
+            if (c.HasValue) currentCount = c.Value;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JsRuntime.InvokeVoidAsync("blazorFocus.set", inputElement);
+    }
+
+    [Parameter]
+    public int CurrentCount
+    {
+        get => currentCount;
+        set
+        {
+            if (currentCount == value) return;
+            currentCount = value;
+            JsRuntime.InvokeAsync<string>("blazorLocalStorage.set", nameof(CurrentCount), currentCount);
+        }
+    }
+
+    [JSInvokable]
+    public async Task UpdateCounter()
+    {
+        Console.WriteLine("Update");
+        int? c = await JsRuntime.InvokeAsync<int?>("blazorLocalStorage.get", new object[] {nameof(CurrentCount)});
+        if (c.HasValue)
+        {
+            currentCount = c.Value;
+        }
+        this.StateHasChanged();
+    }
 
     private void IncrementCount()
     {
-        currentCount++;
+        CurrentCount++;
     }
+
+    private void StartFrom50()
+    {
+        UriHelper.NavigateTo("/Counter/50");
+    }
+
 }

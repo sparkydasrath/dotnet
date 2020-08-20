@@ -1,5 +1,6 @@
 ﻿@page "/"
 
+
 <DismissableAlert @bind-Show="@ShowAlert">
     <span class="oi oi-check mr-2" aria-hidden="true"></span>
     <strong>Blazor is soo cool!</strong>
@@ -10,7 +11,12 @@
 <button @onclick="@ToggleAlert">Toggle</button>
 
 
+
+
 @code {
+    private ElementReference elementReference;
+
+
     public bool ShowAlert { get; set; } = true;
     public void ToggleAlert()
     {
