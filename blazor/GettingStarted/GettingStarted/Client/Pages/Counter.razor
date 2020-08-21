@@ -1,7 +1,9 @@
 ﻿@page "/counter"
 @page "/counter/{CurrentCount:int}"
+@using GettingStarted.Client.Services
 @inject NavigationManager UriHelper
 @inject IJSRuntime JsRuntime
+@inject ILocalStorage LocalStorage
 
 <h1>Counter</h1>
 
@@ -17,20 +19,25 @@
 
 <a class="btn btn-primary" href="/">Home</a>
 
-<button class="btn btn-primary" @onclick="StartFrom50">Start From  50</button>
+<button class="btn btn-primary" @onclick="StartFrom50">Start From 50</button>
 
 @code {
 
-    private int currentCount = 0;
+    private int currentCount;
     private ElementReference inputElement;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            DotNetObjectReference<Counter> objRef = DotNetObjectReference.Create(this);
+            /*DotNetObjectReference<Counter> objRef = DotNetObjectReference.Create(this);
             await JsRuntime.InvokeVoidAsync("blazorLocalStorage.watch", objRef);
-            int? c = await JsRuntime.InvokeAsync<int?>("blazorLocalStorage.get", nameof(CurrentCount));
+            */
+
+            await LocalStorage.WatchAsync(this);
+
+            //int? c = await JsRuntime.InvokeAsync<int?>("blazorLocalStorage.get", nameof(CurrentCount));
+            int? c = await LocalStorage.GetProperty<int?>(nameof(CurrentCount));
             if (c.HasValue) currentCount = c.Value;
         }
         catch (Exception e)
@@ -52,7 +59,8 @@
         {
             if (currentCount == value) return;
             currentCount = value;
-            JsRuntime.InvokeAsync<string>("blazorLocalStorage.set", nameof(CurrentCount), currentCount);
+            //JsRuntime.InvokeAsync<string>("blazorLocalStorage.set", nameof(CurrentCount), currentCount);
+            LocalStorage.SetProperty<int>(nameof(CurrentCount), currentCount);
         }
     }
 
@@ -60,12 +68,13 @@
     public async Task UpdateCounter()
     {
         Console.WriteLine("Update");
-        int? c = await JsRuntime.InvokeAsync<int?>("blazorLocalStorage.get", new object[] {nameof(CurrentCount)});
+        //int? c = await JsRuntime.InvokeAsync<int?>("blazorLocalStorage.get", new object[] { nameof(CurrentCount) });
+        int? c = await LocalStorage.GetProperty<int?>(nameof(CurrentCount));
         if (c.HasValue)
         {
             currentCount = c.Value;
         }
-        this.StateHasChanged();
+        StateHasChanged();
     }
 
     private void IncrementCount()
