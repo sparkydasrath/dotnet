@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleAppStoreRunner", "src\SampleAppStoreRunner\SampleAppStoreRunner.csproj", "{DB41F77D-6C5F-4ABF-80E7-01F87AE0B885}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleAppStoreCore", "src\SampleAppStoreCore\SampleAppStoreCore.csproj", "{AF023245-4DD4-4198-9F89-57711F8CF4C3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB41F77D-6C5F-4ABF-80E7-01F87AE0B885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB41F77D-6C5F-4ABF-80E7-01F87AE0B885}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB41F77D-6C5F-4ABF-80E7-01F87AE0B885}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB41F77D-6C5F-4ABF-80E7-01F87AE0B885}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF023245-4DD4-4198-9F89-57711F8CF4C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF023245-4DD4-4198-9F89-57711F8CF4C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF023245-4DD4-4198-9F89-57711F8CF4C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF023245-4DD4-4198-9F89-57711F8CF4C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {331007A1-E090-4CEF-882F-3C5C83EBD731}
+	EndGlobalSection
+EndGlobal
