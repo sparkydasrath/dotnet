@@ -15,6 +15,7 @@ namespace WpfApp
             MyNetMQClient client = new MyNetMQClient();
 
             client.Publish("Hello world!");
+
         }
     }
 }
