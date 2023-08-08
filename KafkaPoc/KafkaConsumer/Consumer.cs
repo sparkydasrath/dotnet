@@ -1,5 +1,7 @@
 ﻿using Confluent.Kafka;
 
+namespace KafkaConsumer;
+
 public class Consumer
 {
     private readonly string _bootstrapServers;
@@ -8,9 +10,9 @@ public class Consumer
 
     public Consumer(string bootstrapServers, string groupId, string topic)
     {
-        this._bootstrapServers = bootstrapServers;
-        this._groupId = groupId;
-        this._topic = topic;
+        _bootstrapServers = bootstrapServers;
+        _groupId = groupId;
+        _topic = topic;
     }
 
     public void Consume(Dictionary<int, long> offsets)

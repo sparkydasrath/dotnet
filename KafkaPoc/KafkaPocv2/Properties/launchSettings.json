@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "KafkaPocv2": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
