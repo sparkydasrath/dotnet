@@ -4,7 +4,7 @@ using System.Xml;
 using Confluent.Kafka;
 using KafkaProducer;
 
-const string bootstrapServers = "localhost:19092";
+const string bootstrapServers = "kafka:29092";
 const string topic = "test";
 const string groupId = "test-group";
 
