@@ -10,7 +10,11 @@ public class Producer
     public Producer(string bootstrapServers, string topic)
     {
         _topic = topic;
-        _config = new() { BootstrapServers = bootstrapServers };
+        _config = new()
+        {
+            BootstrapServers = bootstrapServers,
+            Acks = Acks.Leader
+        };
     }
 
     public async Task Produce(string message)
@@ -21,6 +25,7 @@ public class Producer
 
             //p.Produce(_topic, new Message<Null, string> { Value = message });
             DeliveryResult<Null, string>? dr = await p.ProduceAsync(_topic, new Message<Null, string> { Value = message });
+            p.Flush();
             Console.WriteLine($"Delivered '{dr.Value}' to '{dr.TopicPartitionOffset}'");
         }
         catch (ProduceException<Null, string> e)

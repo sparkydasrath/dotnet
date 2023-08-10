@@ -4,15 +4,30 @@ using System.Xml;
 using Confluent.Kafka;
 using KafkaProducer;
 
-const string bootstrapServers = "kafka:29092";
+const string bootstrapServers = "localhost:29092";
 const string topic = "test";
 const string groupId = "test-group";
 
 //Consumer consumer = new(bootstrapServers, groupId, topic);
 Producer producer = new(bootstrapServers, topic);
 
+
+while (true)
+{
+    Console.WriteLine("Enter message to send");
+    string? message = Console.ReadLine();
+    if (message == "exit")
+    {
+        break;
+    }
+
+    await producer.Produce(message);
+}
+
+
 // Start producing messages
-await producer.Produce($"Message 1");
+// await producer.Produce($"Message 1");
+
 /*for (int i = 0; i < 3; i++)
 {
     _ = producer.Produce($"Message {i}");
