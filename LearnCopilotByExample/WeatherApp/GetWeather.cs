@@ -10,7 +10,7 @@ public record WeatherData(float Temp, float TempMin, float TempMax);
 
 public class GetWeather
 {
-    private const string ApiKey = "fc43e771b8bc6719b6d4518866155fe1";
+    private const string ApiKey = "";
 
     
     // Use the OpenWeatherMap API to get the weather for a given location
